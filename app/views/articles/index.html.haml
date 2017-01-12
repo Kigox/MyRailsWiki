@@ -1,7 +1,7 @@
 %h1 this is the articles#index placeholder
 
 - @articles.each do |a|
-  %h2= a.title
+  %h2= link_to a.title, a
   %p= truncate(a.content, length: 300)
   %p
     Publié le

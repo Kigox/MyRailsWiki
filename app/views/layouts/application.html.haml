@@ -1,0 +1,17 @@
+!!!
+%html
+  %title MyWiki
+  = csrf_meta_tags
+  = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+  = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+%body
+  %p.notice= notice
+  %p.alert= alert
+
+  =yield
+
+  %ul
+    %li= link_to "Tous les articles", root_path
+    - Category.all.each do |c|
+      %li= link_to c.name, articles_path(category: c.name)
+%body
