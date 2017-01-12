@@ -5,13 +5,21 @@
   = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
   = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
 %body
+  %nav.navbar.navbar-default.navbar-fixed-top
+    .container
+    = link_to "MyRailsWiki", root_path, class: "navbar-brand"
+    %ul.nav.navbar-nav.navbar-right
+      - if user_signed_in?
+        %li= link_to "Nouvel article", new_article_path
   %p.notice= notice
   %p.alert= alert
 
-  =yield
-
-  %ul
-    %li= link_to "Tous les articles", root_path
-    - Category.all.each do |c|
-      %li= link_to c.name, articles_path(category: c.name)
-%body
+  .container
+    .row
+      .col-md-8
+        =yield
+      .col-md-4
+        %ul.list-group
+          %li= link_to "Tous les articles", root_path, class: "list-group-item"
+          - Category.all.each do |c|
+            %li= link_to c.name, articles_path(category: c.name), class: "list-group-item"
