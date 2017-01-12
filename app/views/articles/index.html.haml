@@ -6,5 +6,5 @@
   %p
     Publié le
     = a.created_at.strftime('%d %b, %Y')
-
-= link_to "Nouvel article", new_article_path
+- if user_signed_in?
+  = link_to "Nouvel article", new_article_path
