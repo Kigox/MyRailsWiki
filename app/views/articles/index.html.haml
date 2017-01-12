@@ -2,9 +2,9 @@
 
 - @articles.each do |a|
   %h2= a.title
-  %p
-    Published at
-    = a.created_at.strftime('%d %b, %Y')
   %p= truncate(a.content, length: 300)
+  %p
+    Publié le
+    = a.created_at.strftime('%d %b, %Y')
 
 = link_to "Nouvel article", new_article_path
